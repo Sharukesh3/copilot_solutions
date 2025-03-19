@@ -1,0 +1,47 @@
+openapi: 3.0.0
+info:
+  title: Prompt Rewriter API
+  description: >
+    This API accepts an input prompt and returns a reworded version for improved clarity and effectiveness.
+  version: "1.0.0"
+servers:
+  - url: http://localhost:5000
+paths:
+  /demo:
+    post:
+      summary: Reword an input prompt
+      operationId: rewordPrompt
+      requestBody:
+        description: The original prompt that needs to be reworded.
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                input_prompt:
+                  type: string
+                  description: The input prompt to be rewritten.
+              required:
+                - input_prompt
+      responses:
+        '200':
+          description: Successfully reworded the prompt.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Reworded_prompt:
+                    type: string
+                    description: The reworded version of the input prompt.
+        '500':
+          description: An error occurred while rewording the prompt.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  detail:
+                    type: string
+                    description: Error message.

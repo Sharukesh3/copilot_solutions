@@ -1,0 +1,17 @@
+Descriptor:
+  Name: PromptRewriter
+  DisplayName: Prompt Rewriter Plugin
+  Description: "A plugin that exposes an API to rewrite the user’s input prompt for improved clarity and effectiveness."
+
+SkillGroups:
+  - Format: API
+    Settings:
+      # This URL should point to your public OpenAPI specification describing the rewriting API.
+      OpenApiSpecUrl: "https://github.com/Sharukesh3/open-api-spec/blob/main/test.yml"
+    Skills:
+      RewritePrompt:
+        Description: "Rewrites a provided prompt to enhance clarity, conciseness, or overall quality."
+        Inputs:
+          prompt:
+            Description: "The original prompt text that needs rewriting."
+            Required: true
