@@ -7,11 +7,4 @@ SkillGroups:
   - Format: API
     Settings:
       # This URL should point to your public OpenAPI specification describing the rewriting API.
-      OpenApiSpecUrl: "https://github.com/Sharukesh3/open-api-spec/blob/main/test.yml"
-    Skills:
-      RewritePrompt:
-        Description: "Rewrites a provided prompt to enhance clarity, conciseness, or overall quality."
-        Inputs:
-          prompt:
-            Description: "The original prompt text that needs rewriting."
-            Required: true
+      OpenApiSpecUrl: "https://gist.githubusercontent.com/Sharukesh3/eacded9204b7deaab4a7ab85be463853/raw/cebaa7984fc72d5339b86e0a98ddd6242ff94438/gistfile1.yml"
