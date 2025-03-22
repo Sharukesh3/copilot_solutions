@@ -1,0 +1,43 @@
+Index,kql
+0,"StormEvents 
+| count"
+1,"StormEvents
+| take 5
+| project State, EventType, DamageProperty"
+2,"StormEvents 
+| distinct EventType"
+3,"StormEvents
+| where State == 'TEXAS' and EventType == 'Flood'
+| sort by DamageProperty
+| project StartTime, EndTime, State, EventType, DamageProperty"
+4,"StormEvents
+| where State == 'TEXAS' and EventType == 'Flood'
+| sort by DamageProperty
+| project StartTime, EndTime, State, EventType, DamageProperty"
+5,"StormEvents
+| where State == 'TEXAS' and EventType == 'Flood'
+| project StartTime, EndTime, State, EventType, DamageProperty"
+6,"StormEvents
+| where StartTime between (datetime(2007-08-01 00:00:00) .. datetime(2007-08-30 23:59:59))
+| project State, EventType, StartTime, EndTime
+| sort by StartTime asc"
+7,"StormEvents
+| where State == 'TEXAS' and EventType == 'Flood'
+| top 5 by DamageProperty
+| project StartTime, EndTime, State, EventType, DamageProperty"
+8,"StormEvents
+| where State == 'TEXAS' and EventType == 'Flood'
+| top 5 by DamageProperty desc
+| project StartTime, EndTime, Duration = EndTime - StartTime, DamageProperty"
+9,"StormEvents
+| where State == 'TEXAS' and EventType == 'Flood'
+| top 5 by DamageProperty desc
+| extend Duration = EndTime - StartTime"
+10,"let sourceMapping = dynamic(
+  {
+    ""Emergency Manager"" : ""Public"",
+    ""Utility Company"" : ""Private""
+  });
+StormEvents
+| where Source == ""Emergency Manager"" or Source == ""Utility Company""
+| project EventId, Source, FriendlyName = sourceMapping[Source]"

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Manage Tokens</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Existing Tokens</h1>
+        {% if tokens %}
+            <ul>
+            {% for token in tokens %}
+                <li>
+                    <strong>{{ token[1] }}</strong> (created at: {{ token[2] }})
+                    <form action="/delete_token" method="post" style="display:inline;">
+                        <input type="hidden" name="token_id" value="{{ token[0] }}">
+                        <button type="submit">Remove</button>
+                    </form>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No tokens found.</p>
+        {% endif %}
+        <a href="/">Back to Token Generator</a>
+    </div>
+</body>
+</html>

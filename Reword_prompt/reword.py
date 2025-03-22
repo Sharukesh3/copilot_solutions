@@ -1,7 +1,9 @@
 def reword(text):
-    import os
     from Reword_prompt.remove_think import remove_think_tags
-    os.environ["GROQ_API_KEY"] = "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"
+    from dotenv import load_dotenv
+    import os
+
+    load_dotenv()  # Load .env variables
 
     from langchain_groq import ChatGroq
 

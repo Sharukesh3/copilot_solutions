@@ -1,0 +1,17 @@
+Descriptor:
+  Name: KQLRAGPlugin
+  DisplayName: KQL RAG Plugin
+  Description: "A plugin that exposes an API for a Retrieval-Augmented Generation solution to process KQL queries."
+  SupportedAuthTypes:
+    - ApiKey
+  Authorization:
+    Type: ApiKey
+    Key: access-token  # Matches the header key expected by the API.
+    Location: Header
+    AuthScheme: ""
+
+SkillGroups:
+  - Format: API
+    Settings:
+      # This URL should point to your public OpenAPI specification describing the RAG for KQL queries API.
+      OpenApiSpecUrl: "https://gist.githubusercontent.com/Sharukesh3/205043bde5264f22033c58139d9b2356/raw/7fdc889ae7c15aa6503dceb111abc5f5a731802e/rag.yml"

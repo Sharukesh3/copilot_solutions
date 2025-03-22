@@ -1,17 +1,17 @@
 openapi: "3.0.0"
 info:
   title: "Prompt Rewriter API"
-  description: "This API accepts an input prompt and returns a reworded version for improved clarity and effectiveness."
+  description: "This API accepts an input prompt and returns an apt kql query which can be run."
   version: "1.0.0"
 servers:
   - url: "https://cybernxxt.com:8080"
 paths:
-  /demo:
+  /rag:
     post:
-      summary: "Reword an input prompt"
-      operationId: "rewordPrompt"
+      summary: "Generates kql using RAG"
+      operationId: "ragkql"
       requestBody:
-        description: "The original prompt that needs to be reworded."
+        description: "The original prompt that needs to be converted to a kql"
         required: true
         content:
           application/json:
@@ -20,22 +20,22 @@ paths:
               properties:
                 input_prompt:
                   type: "string"
-                  description: "The input prompt to be rewritten."
+                  description: "The input prompt to be given as a kql"
               required:
                 - "input_prompt"
       responses:
         "200":
-          description: "Successfully reworded the prompt."
+          description: "Successfully returned a kql"
           content:
             application/json:
               schema:
                 type: "object"
                 properties:
-                  Reworded_prompt:
+                  RAG_response:
                     type: "string"
                     description: "The reworded version of the input prompt."
         "500":
-          description: "An error occurred while rewording the prompt."
+          description: "An error occurred while generating a kql"
           content:
             application/json:
               schema:
