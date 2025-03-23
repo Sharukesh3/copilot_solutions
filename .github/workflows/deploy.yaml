@@ -1,0 +1,50 @@
+name: Deploy FastAPI to EC2 (Amazon Linux)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H "${{ secrets.EC2_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Deploy to EC2
+        run: |
+          ssh ${{ secrets.EC2_USER }}@${{ secrets.EC2_HOST }} << 'EOF'
+            set -e  # Exit immediately if a command exits with a non-zero status
+
+            # Change to your cloned repo directory on the EC2 instance
+            # Adjust this path if your repo is in a different location
+            cd /home/ec2-user/copilot_solutions
+
+            # Pull the latest code from main branch
+            git pull origin main
+
+            # If you need a .env file from a GitHub secret, uncomment:
+            echo "${{ secrets.DOT_ENV }}" > .env
+
+            # Create a new virtual environment named venv
+            python3 -m venv venv
+
+            # Activate the virtual environment
+            source venv/bin/activate
+
+            # Install required packages from Requirement.txt
+            pip install --upgrade pip
+            pip install -r Requirement.txt
+
+            # Run main_with_rag.py
+            sudo /home/ec2-user/file_name/env_name/bin/python3 main_with_rag.py
+          EOF
