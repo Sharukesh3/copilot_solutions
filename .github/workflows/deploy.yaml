@@ -30,8 +30,7 @@ jobs:
             # Adjust this path if your repo is in a different location
             cd /home/ec2-user/copilot_solutions
 
-            # Pull the latest code from main branch
-            git pull origin main
+            pwd
 
             # If you need a .env file from a GitHub secret, uncomment:
             echo "${{ secrets.DOT_ENV }}" > .env
