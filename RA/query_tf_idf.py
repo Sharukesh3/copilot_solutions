@@ -41,9 +41,9 @@ def query_tf_idf(query, top_k):
     results_list = results.to_dict(orient="records")
     return results_list
 
-'''
+#'''
 # Example usage:
-topk_results = query_tf_idf("retrieve the total number of records in the StormEvents table", 5)
+topk_results = query_tf_idf("1.	Check in last 30 days if the user account parth.test@pcsassure.me have been involved in any incident on Microsoft Sentinel.", 5)
 print("Returned list of top-k results:")
 print(topk_results)
-'''
+#'''

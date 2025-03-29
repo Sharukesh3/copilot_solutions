@@ -1,0 +1,48 @@
+Index,kql
+0,"SecurityIncident
+| where ModifiedBy == ""parth.test@pcsassure.me""
+| where CreatedTime >= ago(30d) or LastModifiedTime >= ago(30d)
+| project IncidentName, Title, Description, CreatedTime, LastModifiedTime, Status
+"
+1,"WindowsFirewall
+| where CommunicationDirection == ""RECEIVE""
+| summarize UniquePorts = dcount(DestinationPort) by SourceIP, bin(TimeGenerated, 1m)
+| where UniquePorts > 10
+| project TimeGenerated, SourceIP, UniquePorts
+"
+2,"SecurityAlert
+| where ProductName == ""Microsoft Sentinel""
+| summarize AlertCount = count() by AlertName
+| project AlertName, AlertCount
+"
+3,"Usage
+| where TimeGenerated >= ago(48h)
+| where IsBillable == true
+| where Solution == ""SecurityInsights""
+| project TimeGenerated, DataType, Quantity, _BilledSize
+"
+4,"SecurityIncident
+| where TimeGenerated >= ago(2d)
+"
+5,"CommonSecurityLog
+| where DeviceVendor == ""Fortinet""
+| where EventOutcome == ""success""
+| where Message contains ""VPN""
+| project TimeGenerated, SourceIP, DestinationIP, EventOutcome, Message
+"
+6,"SecurityIncident
+| where TimeGenerated >= ago(24h)
+| mv-expand techniques = parse_json(tostring(AdditionalData.techniques))
+| summarize Count = count() by tostring(techniques)
+| top 1 by Count
+"
+7,"Analytics workspace
+let timePeriod = 24h;
+let totalSeconds = toscalar(range x from 0 to timePeriod / 1s step 1 | summarize count());
+Usage
+| where TimeGenerated >= ago(timePeriod)
+| summarize TotalDataIngestedMB = sum(Quantity)
+| extend TotalDataIngestedBytes = TotalDataIngestedMB * 1024 * 1024
+| extend AverageIngestionRatePerSecond = TotalDataIngestedBytes / totalSeconds
+| project AverageIngestionRatePerSecond
+"

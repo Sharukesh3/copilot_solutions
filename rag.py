@@ -82,12 +82,12 @@ def rag_request(groq_api_key, user_query,
 # Example usage:
 if __name__ == "__main__":
     groq_key = "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"
-    user_query = "retrieve the total number of records in the StormEvents table"
+    user_query = "Check in last 30 days if the user account parth.test@pcsassure.me have been involved in any incident on Microsoft Sentinel give proper kql wrt to the request."
     final_response = rag_request(groq_key, user_query,
                                       tfidf_top_n=5,
                                       chroma_top_n=5,
                                       final_top_k=3,
-                                      persist_dir=r"C:\profolders\Internships\Inceptai\rag\RA\chromadb_data",
+                                      persist_dir=r"C:\profolders\Internships\Inceptai\rag\RA\chromadb_data_new",
                                       collection_name="kql_context_embeddings")
     print("Final response from LLM:")
     print(final_response)

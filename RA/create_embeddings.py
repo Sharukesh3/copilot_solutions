@@ -7,7 +7,7 @@ import traceback
 import chromadb
 
 # Define the persistence directory path
-persist_dir = "./chromadb_data"
+persist_dir = "./chromadb_data_new"
 
 # Delete the persistent directory if it exists to start fresh
 if os.path.exists(persist_dir):
@@ -32,7 +32,7 @@ print("ChromaDB imported successfully")
 
 # Load the dataframe from the augmented CSV
 try:
-    df = pd.read_csv(r"C:\profolders\Internships\Inceptai\rag\dataset\kql_augmented.csv")
+    df = pd.read_csv(r"C:\profolders\Internships\Inceptai\rag\dataset\kql_provided_augmented.csv")
     print(f"Loaded {len(df)} rows from kql_augmented.csv")
     print(f"Columns in dataframe: {df.columns.tolist()}")
 except Exception as e:
@@ -125,7 +125,7 @@ import pandas as pd
 
 # Assuming `df` is already defined and contains the 'context' and 'kql' columns
 # Combine 'context' and 'kql' columns to create a corpus
-df = pd.read_csv(r"C:\profolders\Internships\Inceptai\rag\dataset\kql_augmented.csv")
+df = pd.read_csv(r"C:\profolders\Internships\Inceptai\rag\dataset\kql_provided_augmented.csv")
 corpus = df.apply(lambda row: f"{row['context']} {row['kql']}", axis=1)
 
 # Initialize TF-IDF Vectorizer

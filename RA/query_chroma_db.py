@@ -45,9 +45,9 @@ def query_chroma_db(persist_dir, collection_name, query, top_k):
 # Example usage:
 '''
 results = query_chroma_db(
-    "./chromadb_data",
+    "./chromadb_data_new",
     "kql_context_embeddings",
-    "retrieve the total number of records in the StormEvents table",
+    "Check in last 30 days if the user account parth.test@pcsassure.me have been involved in any incident on Microsoft Sentinel.",
     5
 )
 print("Returned list of top-k results:")

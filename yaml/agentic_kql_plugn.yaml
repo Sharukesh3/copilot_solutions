@@ -1,0 +1,17 @@
+Descriptor:
+  Name: AgenticKQLPlugin
+  DisplayName: Agentic kql plugin
+  Description: "A plugin that exposes an API for a agentic way of generating KQL queries."
+  SupportedAuthTypes:
+    - ApiKey
+  Authorization:
+    Type: ApiKey
+    Key: access-token  # Matches the header key expected by the API.
+    Location: Header
+    AuthScheme: ""
+
+SkillGroups:
+  - Format: API
+    Settings:
+      # This URL should point to your public OpenAPI specification describing the RAG for KQL queries API.
+      OpenApiSpecUrl: "https://gist.githubusercontent.com/Sharukesh3/a4c7b52569347cb26f7af20d2a27e1bd/raw/d5554eb1756c8bdd0c99d81e687a0cad808c5a5f/agent.yml"

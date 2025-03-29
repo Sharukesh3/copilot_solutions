@@ -13,6 +13,8 @@ from generate_auth_tokens.models.create_database import init_db, save_token, get
 
 from rag import rag_request
 
+from agentic.agent import agent_pipeline
+
 from dotenv import load_dotenv
 import os
 load_dotenv()  # Load .env variables
@@ -119,6 +121,23 @@ async def rag(data: InputPrompt, token: str = Depends(get_current_token)):
         raise HTTPException(status_code=500, detail=str(e))
 
     return {"RAG_response": output_rag_response}
+
+@app.post("/agent")
+async def agent(data: InputPrompt, token: str = Depends(get_current_token)):
+    # Extract input data
+    input_prompt = data.input_prompt
+
+    try:
+        # Call the function and generate the output
+        print("Input prompt:", input_prompt)
+        reworded_prompt = reword(input_prompt)
+        print("Reworded prompt:", reworded_prompt)
+        output_kql_query = agent_pipeline(input_prompt)
+        print("Output kql query:", output_kql_query)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+    return {"output_kql_query": output_kql_query}
 
 
 if __name__ == "__main__":
