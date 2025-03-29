@@ -36,15 +36,17 @@ jobs:
             echo "${{ secrets.DOT_ENV }}" > .env
 
             # Create a new virtual environment named venv
-            python3 -m venv venv
+            python -m venv venv
 
             # Activate the virtual environment
             source venv/bin/activate
 
             # Install required packages from Requirement.txt
-            pip install --upgrade pip
-            pip install -r Requirement.txt
+
+            mkdir -p ~/tmp
+            TMPDIR=~/tmp pip install --upgrade pip
+            TMPDIR=~/tmp pip install -r Requirement.txt
 
             # Run main_with_rag.py
-            sudo /home/ec2-user/file_name/env_name/bin/python3 main_with_rag.py
+            sudo /home/ec2-user/copilot_solutions/venv/bin/python3 main.py
           EOF
