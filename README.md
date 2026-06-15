@@ -8,7 +8,7 @@ This repository contains the source code and experimental data for the research 
 
 **[Read the full paper on IEEE Xplore »](https://link.springer.com/chapter/10.1007/978-981-95-1361-1_45)**
 
-This project involves the development of intelligent plugins designed to improve prompt rewording and generate Kusto Query Language (KQL) queries. By leveraging Retrieval-Augmented Generation (RAG) and agentic AI techniques, the plugins can either construct queries from scratch or refine them based on contextual information retrieved dynamically. The solution is tailored for integration into advanced AI copilots and security-focused platforms, enabling streamlined, context-aware query generation and natural language interactions for enhanced threat investigation and data analysis workflows.
+This project involves the development of intelligent plugins designed to improve prompt rewording and generate Kusto Query Language (KQL) queries. By leveraging Retrieval-Augmented Generation (RAG) and agentic AI techniques, the plugins can either construct queries from scratch or refine them based on contextual information retrieved dynamically. The solution is tailored for integration into advanced AI copilots and security-focused platforms, enabling streamlined, context-aware query generation and natural language interactions for enhanced threat investigation and data analysis workflows..
 
 Find the openapispec url [Here](https://github.com/Sharukesh3/open-api-spec)
 
